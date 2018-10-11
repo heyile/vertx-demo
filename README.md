@@ -29,10 +29,8 @@ the result is show as below:
 you can see that http2 client will not invoke the method `endpointConnected` 
 
 ```
-before http1.1 : DefaultClientEndpointMetric.INSTANCE.getAdded() is false
-hello world
-after http1.1:  DefaultClientEndpointMetric.INSTANCE.getAdded() is true
 before http2:  DefaultClientEndpointMetric.INSTANCE.getAdded() is false
 hello world
 after http2:  DefaultClientEndpointMetric.INSTANCE.getAdded() is false
+
 ```
