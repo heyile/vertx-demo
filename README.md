@@ -24,9 +24,19 @@ public class DefaultHttpClientMetrics implements
 }  
 ```
 
-the result is show as below:
+1.  client :  `setHttp2ClearTextUpgrade(true)`. it seems that invoke the method endPointConnected correctly.
 
-you can see that http2 client will not invoke the method `endpointConnected` 
+the result is shown as bellow : 
+
+```
+before http1.1 : DefaultClientEndpointMetric.INSTANCE.getAdded() is false
+hello world
+after http1.1:  DefaultClientEndpointMetric.INSTANCE.getAdded() is true
+before http2:  DefaultClientEndpointMetric.INSTANCE.getAdded() is false
+hello world
+after http2:  DefaultClientEndpointMetric.INSTANCE.getAdded() is true
+```
+1.  client :  `setHttp2ClearTextUpgrade(false)`. it seems that there is still something wrong
 
 ```
 before http1.1 : DefaultClientEndpointMetric.INSTANCE.getAdded() is false

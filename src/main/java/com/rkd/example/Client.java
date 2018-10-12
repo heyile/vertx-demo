@@ -46,7 +46,7 @@ public class Client {
     HttpClientOptions http2ClientOption = new HttpClientOptions();
     http2ClientOption.setProtocolVersion(HttpVersion.HTTP_2)
         .setUseAlpn(true)
-//        .setHttp2ClearTextUpgrade(false)
+        .setHttp2ClearTextUpgrade(false)
         .setSsl(false);
 
     HttpClient http2Client = vertx.createHttpClient(http2ClientOption);
