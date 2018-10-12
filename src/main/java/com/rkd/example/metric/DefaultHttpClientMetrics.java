@@ -32,18 +32,12 @@ public class DefaultHttpClientMetrics implements
   private static final Logger LOGGER = LoggerFactory.getLogger(DefaultHttpClientMetrics.class);
 
 
-  private final HttpClient client;
-
   private final HttpClientOptions options;
 
-  public DefaultHttpClientMetrics(HttpClient client, HttpClientOptions options) {
-    this.client = client;
+  public DefaultHttpClientMetrics(HttpClientOptions options) {
     this.options = options;
   }
 
-  public HttpClient getClient() {
-    return client;
-  }
 
   public HttpClientOptions getOptions() {
     return options;

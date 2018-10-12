@@ -1,6 +1,5 @@
 package com.rkd.example.metric;
 
-import io.vertx.core.Vertx;
 import io.vertx.core.VertxOptions;
 import io.vertx.core.metrics.MetricsOptions;
 import io.vertx.core.spi.VertxMetricsFactory;
@@ -14,9 +13,9 @@ public class DefaultVertxMetricsFactory implements VertxMetricsFactory {
   }
 
   @Override
-  public synchronized VertxMetrics metrics(Vertx vertx, VertxOptions options) {
+  public synchronized VertxMetrics metrics( VertxOptions options) {
     if (vertxMetrics == null) {
-      vertxMetrics = new DefaultVertxMetrics(vertx, options);
+      vertxMetrics = new DefaultVertxMetrics( options);
     }
     return vertxMetrics;
   }
