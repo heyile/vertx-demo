@@ -26,7 +26,6 @@ public class DefaultVertxMetrics extends DummyVertxMetrics {
 
   @Override
   public HttpClientMetrics<?, ?, ?, ?, ?> createMetrics(HttpClient client, HttpClientOptions options) {
-
     return new DefaultHttpClientMetrics(client, options);
   }
 

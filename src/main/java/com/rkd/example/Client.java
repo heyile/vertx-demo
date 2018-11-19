@@ -21,7 +21,6 @@ public class Client {
     vertxOptions.setMetricsOptions(defaultVertxMetricsFactory.newOptions());
     Vertx vertx = Vertx.vertx(vertxOptions);
 
-    System.out.println("before http2:  DefaultClientEndpointMetric.INSTANCE.getAdded() is " + DefaultClientEndpointMetric.INSTANCE.getAdded());
     HttpClientOptions http2ClientOption = new HttpClientOptions();
     http2ClientOption.setProtocolVersion(HttpVersion.HTTP_2)
         .setUseAlpn(true)
@@ -35,9 +34,7 @@ public class Client {
     HttpClient localhost = http2Client.getNow(8080, "localhost", "", resp -> {
       resp.bodyHandler(buff -> {
         System.out.println(buff.toString());
-        System.out.println(
-            "after http2:  DefaultClientEndpointMetric.INSTANCE.getAdded() is " + DefaultClientEndpointMetric.INSTANCE
-                .getAdded());
+        System.out.println("received body : " + buff.getBytes().length);
       });
     });
   }
