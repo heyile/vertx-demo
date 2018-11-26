@@ -4,8 +4,12 @@ import io.vertx.core.Vertx;
 import io.vertx.core.VertxOptions;
 import io.vertx.core.http.HttpClient;
 import io.vertx.core.http.HttpClientOptions;
+import io.vertx.core.http.HttpServer;
+import io.vertx.core.http.HttpServerOptions;
 import io.vertx.core.metrics.impl.DummyVertxMetrics;
+import io.vertx.core.net.SocketAddress;
 import io.vertx.core.spi.metrics.HttpClientMetrics;
+import io.vertx.core.spi.metrics.HttpServerMetrics;
 
 public class DefaultVertxMetrics extends DummyVertxMetrics {
   private final Vertx vertx;
@@ -23,7 +27,10 @@ public class DefaultVertxMetrics extends DummyVertxMetrics {
   }
 
 
-
+  @Override
+  public HttpServerMetrics createMetrics(HttpServer server, SocketAddress localAddress, HttpServerOptions options) {
+    return new DefaultHttpServerMetrics();
+  }
   @Override
   public HttpClientMetrics<?, ?, ?, ?, ?> createMetrics(HttpClient client, HttpClientOptions options) {
 

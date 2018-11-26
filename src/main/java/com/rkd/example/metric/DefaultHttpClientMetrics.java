@@ -129,10 +129,13 @@ public class DefaultHttpClientMetrics implements
 
   @Override
   public void bytesRead(Object socketMetric, SocketAddress remoteAddress, long numberOfBytes) {
+    System.out.println("client read : " + numberOfBytes);
+
   }
 
   @Override
   public void bytesWritten(Object socketMetric, SocketAddress remoteAddress, long numberOfBytes) {
+    System.out.println("client write  : " + numberOfBytes);
   }
 
   @Override
