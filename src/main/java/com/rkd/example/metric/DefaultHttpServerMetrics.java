@@ -7,74 +7,77 @@ import io.vertx.core.http.ServerWebSocket;
 import io.vertx.core.net.SocketAddress;
 import io.vertx.core.spi.metrics.HttpServerMetrics;
 
-public class DefaultHttpServerMetrics implements HttpServerMetrics {
+public class DefaultHttpServerMetrics implements HttpServerMetrics<Void,Void,Void> {
   @Override
-  public Object requestBegin(Object socketMetric, HttpServerRequest request) {
+  public Void requestBegin(Void socketMetric, HttpServerRequest request) {
+    System.out.println("server request begin");
     return null;
   }
 
   @Override
-  public void requestReset(Object requestMetric) {
+  public void requestReset(Void requestMetric) {
+    System.out.println("server request reset ");
+  }
+
+  @Override
+  public Void responsePushed(Void socketMetric, HttpMethod method, String uri, HttpServerResponse response) {
+    return null;
+  }
+
+  @Override
+  public void responseEnd(Void requestMetric, HttpServerResponse response) {
 
   }
 
   @Override
-  public Object upgrade(Object requestMetric, ServerWebSocket serverWebSocket) {
+  public Void upgrade(Void requestMetric, ServerWebSocket serverWebSocket) {
+    return null;
+  }
+
+  @Override
+  public Void connected(Void socketMetric, ServerWebSocket serverWebSocket) {
     System.out.println("server connected");
     return null;
   }
 
   @Override
-  public Object connected(Object socketMetric, ServerWebSocket serverWebSocket) {
-    System.out.println("server connected");
-    return null;
-  }
-
-  @Override
-  public Object responsePushed(Object socketMetric, HttpMethod method, String uri, HttpServerResponse response) {
-    return null;
-  }
-
-  @Override
-  public void responseEnd(Object requestMetric, HttpServerResponse response) {
+  public void disconnected(Void serverWebSocketMetric) {
+    System.out.println("server disConnected");
 
   }
 
   @Override
-  public void disconnected(Object serverWebSocketMetric) {
-    System.out.println("server disconnected");
-  }
-
-  @Override
-  public Object connected(SocketAddress remoteAddress, String remoteName) {
+  public Void connected(SocketAddress remoteAddress, String remoteName) {
     System.out.println("server connected");
 
     return null;
   }
 
   @Override
-  public void disconnected(Object socketMetric, SocketAddress remoteAddress) {
-    System.out.println("server disconnected");
+  public void disconnected(Void socketMetric, SocketAddress remoteAddress) {
+    System.out.println("server disConnected");
+
   }
 
   @Override
-  public void bytesRead(Object socketMetric, SocketAddress remoteAddress, long numberOfBytes) {
-    System.out.println("server read : " + numberOfBytes);
+  public void bytesRead(Void socketMetric, SocketAddress remoteAddress, long numberOfBytes) {
+    System.out.println("server bytesRead : " + numberOfBytes);
   }
 
   @Override
-  public void bytesWritten(Object socketMetric, SocketAddress remoteAddress, long numberOfBytes) {
-    System.out.println("server write : " + numberOfBytes);
+  public void bytesWritten(Void socketMetric, SocketAddress remoteAddress, long numberOfBytes) {
+    System.out.println("server bytesWritten : " + numberOfBytes);
+
   }
 
   @Override
-  public void exceptionOccurred(Object socketMetric, SocketAddress remoteAddress, Throwable t) {
+  public void exceptionOccurred(Void socketMetric, SocketAddress remoteAddress, Throwable t) {
 
   }
 
   @Override
   public boolean isEnabled() {
-    return false;
+    return true;
   }
 
   @Override

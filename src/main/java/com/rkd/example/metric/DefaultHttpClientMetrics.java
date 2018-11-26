@@ -80,7 +80,8 @@ public class DefaultHttpClientMetrics implements
   public Object requestBegin(DefaultClientEndpointMetric endpointMetric,
       Object socketMetric, SocketAddress localAddress, SocketAddress remoteAddress,
       HttpClientRequest request) {
-    return socketMetric;
+    System.out.println("client request begin");
+    return null;
   }
 
   @Override
