@@ -1,8 +1,5 @@
 package com.rkd.example;
 
-import com.rkd.example.metric.DefaultClientEndpointMetric;
-import com.rkd.example.metric.DefaultVertxMetricsFactory;
-
 import io.vertx.core.Vertx;
 import io.vertx.core.VertxOptions;
 import io.vertx.core.http.HttpClient;
@@ -15,14 +12,10 @@ public class Client {
   public static void main(String[] args) {
 
     VertxOptions vertxOptions = new VertxOptions();
-    DefaultVertxMetricsFactory defaultVertxMetricsFactory = new DefaultVertxMetricsFactory();
-    MetricsOptions metricsOptions = defaultVertxMetricsFactory.newOptions();
-    vertxOptions.setMetricsOptions(defaultVertxMetricsFactory.newOptions());
+//    DefaultVertxMetricsFactory defaultVertxMetricsFactory = new DefaultVertxMetricsFactory();
+//    MetricsOptions metricsOptions = defaultVertxMetricsFactory.newOptions();
+//    vertxOptions.setMetricsOptions(defaultVertxMetricsFactory.newOptions());
     Vertx vertx = Vertx.vertx(vertxOptions);
-
-    System.out.println(
-        "before http2:  DefaultClientEndpointMetric.INSTANCE.getAdded() is " + DefaultClientEndpointMetric.INSTANCE
-            .getAdded());
     HttpClientOptions http2ClientOption = new HttpClientOptions();
     http2ClientOption.setProtocolVersion(HttpVersion.HTTP_2)
         .setUseAlpn(true)

@@ -1,7 +1,5 @@
 package com.rkd.example;
 
-import com.rkd.example.metric.DefaultVertxMetricsFactory;
-
 import io.vertx.core.Vertx;
 import io.vertx.core.VertxOptions;
 import io.vertx.core.http.HttpServer;
@@ -24,9 +22,9 @@ public class Server {
         .setPemKeyCertOptions(
             new PemKeyCertOptions().setKeyPath("tsl/server-key.pem").setCertPath("tsl/server-cert.pem"));
     VertxOptions vertxOptions = new VertxOptions();
-    VertxMetricsFactory factory = (vertx, options) -> new DummyVertxMetrics() {
+    VertxMetricsFactory factory = (options) -> new DummyVertxMetrics() {
       @Override
-      public HttpServerMetrics createMetrics(HttpServer server, SocketAddress localAddress, HttpServerOptions options) {
+      public HttpServerMetrics<?, ?, ?> createHttpServerMetrics(HttpServerOptions options, SocketAddress localAddress) {
         return new DummyHttpServerMetrics() {
           @Override
           public Void requestBegin(Void socketMetric, HttpServerRequest request) {
