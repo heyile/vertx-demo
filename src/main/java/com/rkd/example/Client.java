@@ -21,25 +21,25 @@ public class Client {
     vertxOptions.setMetricsOptions(defaultVertxMetricsFactory.newOptions());
     Vertx vertx = Vertx.vertx(vertxOptions);
 
-    System.out.println("before http1.1 : DefaultClientEndpointMetric.INSTANCE.getAdded() is " + DefaultClientEndpointMetric.INSTANCE.getAdded());
-    HttpClientOptions httpClientOptions = new HttpClientOptions();
-    httpClientOptions.setKeepAlive(true);
-    httpClientOptions.setProtocolVersion(HttpVersion.HTTP_1_1);
-    HttpClient httpClient = vertx.createHttpClient(httpClientOptions);
-    httpClient.getNow(8080, "localhost", "", resp -> {
-      resp.bodyHandler(buff -> {
-        System.out.println(buff.toString());
-        countDownLatch.countDown();
-      });
-    });
-
-    try {
-      countDownLatch.await();
-      System.out.println("after http1.1:  DefaultClientEndpointMetric.INSTANCE.getAdded() is " + DefaultClientEndpointMetric.INSTANCE.getAdded());
-      DefaultClientEndpointMetric.INSTANCE.setAdded(false);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
+//    System.out.println("before http1.1 : DefaultClientEndpointMetric.INSTANCE.getAdded() is " + DefaultClientEndpointMetric.INSTANCE.getAdded());
+//    HttpClientOptions httpClientOptions = new HttpClientOptions();
+//    httpClientOptions.setKeepAlive(true);
+//    httpClientOptions.setProtocolVersion(HttpVersion.HTTP_1_1);
+//    HttpClient httpClient = vertx.createHttpClient(httpClientOptions);
+//    httpClient.getNow(8081, "localhost", "", resp -> {
+//      resp.bodyHandler(buff -> {
+//        System.out.println(buff.toString());
+//        countDownLatch.countDown();
+//      });
+//    });
+//
+//    try {
+//      countDownLatch.await();
+//      System.out.println("after http1.1:  DefaultClientEndpointMetric.INSTANCE.getAdded() is " + DefaultClientEndpointMetric.INSTANCE.getAdded());
+//      DefaultClientEndpointMetric.INSTANCE.setAdded(false);
+//    } catch (InterruptedException e) {
+//      e.printStackTrace();
+//    }
 
     System.out.println("before http2:  DefaultClientEndpointMetric.INSTANCE.getAdded() is " + DefaultClientEndpointMetric.INSTANCE.getAdded());
 
@@ -51,7 +51,7 @@ public class Client {
 
     HttpClient http2Client = vertx.createHttpClient(http2ClientOption);
 
-    http2Client.getNow(8080, "localhost", "", resp -> {
+    http2Client.getNow(8081, "localhost", "", resp -> {
       resp.bodyHandler(buff -> {
         System.out.println(buff.toString());
         System.out.println("after http2:  DefaultClientEndpointMetric.INSTANCE.getAdded() is " + DefaultClientEndpointMetric.INSTANCE.getAdded());
